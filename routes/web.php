@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ Route::get('/admin/panel', function () {
 
 //admin controller
 Route::prefix('admin')->group(function () {
-    
+
     //slider
     Route::prefix('slider')->group(function () { // Change here
         Route::get('/list', [SliderController::class, 'index'])->name('slider.index');
@@ -30,7 +31,15 @@ Route::prefix('admin')->group(function () {
         Route::post('/update/{id}', [SliderController::class, 'update'])->name('slider.update');
         Route::get('/destroy/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
     });
-    
+    //slider
+    Route::prefix('feature')->group(function () { // Change here
+        Route::get('/list', [FeatureController::class, 'index'])->name('feature.index');
+        Route::get('/create', [FeatureController::class, 'create'])->name('feature.create');
+        Route::post('/store', [FeatureController::class, 'store'])->name('feature.store');
+        Route::get('/edit/{id}', [FeatureController::class, 'edit'])->name('feature.edit');
+        Route::post('/update/{id}', [FeatureController::class, 'update'])->name('feature.update');
+        Route::get('/destroy/{id}', [FeatureController::class, 'destroy'])->name('feature.destroy');
+    });
 });
 
 
