@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CountryController;
@@ -59,6 +60,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [CountryController::class, 'edit'])->name('country.edit');
         Route::post('/update/{id}', [CountryController::class, 'update'])->name('country.update');
         Route::get('/destroy/{id}', [CountryController::class, 'destroy'])->name('country.destroy');
+    });
+    //country
+    Route::prefix('about')->group(function () { // Change here
+        Route::get('/show/{id}', [AboutController::class, 'show'])->name('about.show');
+        Route::get('/list', [AboutController::class, 'index'])->name('about.index');
+        Route::get('/create', [AboutController::class, 'create'])->name('about.create');
+        Route::post('/store', [AboutController::class, 'store'])->name('about.store');
+        Route::get('/edit/{id}', [AboutController::class, 'edit'])->name('about.edit');
+        Route::post('/update/{id}', [AboutController::class, 'update'])->name('about.update');
+        Route::get('/destroy/{id}', [AboutController::class, 'destroy'])->name('about.destroy');
     });
 });
 
