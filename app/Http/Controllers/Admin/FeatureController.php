@@ -73,7 +73,7 @@ class FeatureController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('feature.index')->with($notification);
-    }
+    } // end method
 
 
     public function destroy($id)
@@ -91,5 +91,5 @@ class FeatureController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
-    }
+    } // end method
 }
