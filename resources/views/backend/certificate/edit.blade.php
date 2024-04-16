@@ -4,7 +4,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Feature List</h5>
+                <h5 class="bc-title">Slider List</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,21 +23,13 @@
             <div class="col-12 col-md-6 col-sm-12 mx-auto">
                 <div class="card">
                     <div class="card-body p-3">
-                        <form action="{{ route('feature.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('certificate.update',$data->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="count">Number</label>
-                                <input type="number" name="count" class="form-control">
-                            </div>
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control">
-                                <img id="image-preview" src="#" alt="Preview"
-                                    style="display: none; max-width: 100px; height: auto;margin-top:10px">
+                                <img id="image-preview" src="{{ $data->image ? asset('uploads/certificate/' . $data->image) : '#' }}" alt="Preview"
+                                    style="display: {{ $data->image ? 'block' : 'none' }}; max-width: 100px; height: auto; margin-top: 10px;">
                             </div>
                             <button type="submit" class="btn  btn-primary">Submit</button>
                         </form>
@@ -48,21 +40,19 @@
     </div>
 
     <script>
-        // JavaScript to display preview of uploaded image
-        const imageInput = document.getElementById('image');
-        const imagePreview = document.getElementById('image-preview');
-    
-        imageInput.addEventListener('change', function(event) {
+        const slideInput = document.getElementById('image');
+        const slidePreview = document.getElementById('image-preview');
+
+        slideInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
             const reader = new FileReader();
-    
+
             reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
+                slidePreview.src = e.target.result;
+                slidePreview.style.display = 'block';
             }
-    
+
             reader.readAsDataURL(file);
         });
     </script>
-    
 @endsection

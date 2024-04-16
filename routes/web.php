@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ProfileController;
@@ -31,7 +32,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/update/{id}', [SliderController::class, 'update'])->name('slider.update');
         Route::get('/destroy/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
     });
-    //slider
+    //feature
     Route::prefix('feature')->group(function () { // Change here
         Route::get('/list', [FeatureController::class, 'index'])->name('feature.index');
         Route::get('/create', [FeatureController::class, 'create'])->name('feature.create');
@@ -39,6 +40,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [FeatureController::class, 'edit'])->name('feature.edit');
         Route::post('/update/{id}', [FeatureController::class, 'update'])->name('feature.update');
         Route::get('/destroy/{id}', [FeatureController::class, 'destroy'])->name('feature.destroy');
+    });
+    //certificate
+    Route::prefix('certificate')->group(function () { // Change here
+        Route::get('/list', [CertificateController::class, 'index'])->name('certificate.index');
+        Route::get('/create', [CertificateController::class, 'create'])->name('certificate.create');
+        Route::post('/store', [CertificateController::class, 'store'])->name('certificate.store');
+        Route::get('/edit/{id}', [CertificateController::class, 'edit'])->name('certificate.edit');
+        Route::post('/update/{id}', [CertificateController::class, 'update'])->name('certificate.update');
+        Route::get('/destroy/{id}', [CertificateController::class, 'destroy'])->name('certificate.destroy');
     });
 });
 

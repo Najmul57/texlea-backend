@@ -1,10 +1,16 @@
 @extends('backend.layout.admin-master')
 
+
 @section('admin-content')
+    <style>
+        div#image-preview-container {
+            display: flex;
+        }
+    </style>
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Feature List</h5>
+                <h5 class="bc-title">Slider List</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,23 +29,14 @@
             <div class="col-12 col-md-6 col-sm-12 mx-auto">
                 <div class="card">
                     <div class="card-body p-3">
-                        <form action="{{ route('feature.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('certificate.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="count">Number</label>
-                                <input type="number" name="count" class="form-control">
-                            </div>
                             <div class="form-group my-3">
-                                <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
-                                <img id="image-preview" src="#" alt="Preview"
-                                    style="display: none; max-width: 100px; height: auto;margin-top:10px">
+                                <label for="image">Certificate</label>
+                                <input type="file" name="image" id="image" class="form-control" multiple>
+                                <div id="image-preview-container" style="margin-top: 10px;"></div>
                             </div>
-                            <button type="submit" class="btn  btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -48,21 +45,29 @@
     </div>
 
     <script>
-        // JavaScript to display preview of uploaded image
+        // JavaScript to display preview of uploaded images
         const imageInput = document.getElementById('image');
-        const imagePreview = document.getElementById('image-preview');
+        const imagePreviewContainer = document.getElementById('image-preview-container');
     
         imageInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
+            const files = event.target.files;
+            imagePreviewContainer.innerHTML = ''; // Clear previous previews
     
-            reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+    
+                reader.onload = function(e) {
+                    const imagePreview = document.createElement('img');
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.maxWidth = '100px';
+                    imagePreview.style.height = 'auto';
+                    imagePreview.style.marginRight = '5px';
+                    imagePreviewContainer.appendChild(imagePreview);
+                }
+    
+                reader.readAsDataURL(file);
             }
-    
-            reader.readAsDataURL(file);
         });
     </script>
-    
 @endsection

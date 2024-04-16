@@ -34,7 +34,12 @@ class SliderController extends Controller
 
         $data->save();
 
-        return redirect()->route('slider.index')->with('success', 'Slide stored successfully!');
+        $notification = array(
+            'message' => 'Slider Insert Success!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('slider.index')->with($notification);
+
     } // end method
 
     public function edit($id)

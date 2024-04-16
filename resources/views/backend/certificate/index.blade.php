@@ -4,7 +4,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Feature List</h5>
+                <h5 class="bc-title">Certificate List</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +20,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-sm-6 mx-auto">
                 <div class="card">
                     <div class="card-body p-0">
                         <div class="table-responsive active-projects manage-client">
@@ -29,30 +29,26 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Title</th>
-                                        <th>Count</th>
                                         <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($features as $key => $item)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        
-                                        <td>{{ ucfirst($item->name)}}</td>
-                                        <td>{{ $item->count}}</td>
-                                        <td><img src="{{ asset('uploads/feature/'.$item->image) }}" alt="" style="width: 80px"></td>
-                                        <td>
-                                            <a href="{{ route('feature.edit',$item->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('feature.destroy',$item->id) }}" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach                                
+                                    @foreach ($certificates as $key => $item)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td><img src="{{ asset('uploads/certificate/' . $item->image) }}" alt=""
+                                                    style="width: 80px"></td>
+                                            <td>
+                                                <a href="{{ route('certificate.edit', $item->id) }}"
+                                                    class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ route('certificate.destroy', $item->id) }}" id="delete"
+                                                    class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
-
                             </table>
-
                         </div>
                     </div>
                 </div>
