@@ -71,7 +71,7 @@ class SliderController extends Controller
             'message' => 'Slider Update Success!',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('slider.index')->with($notification);
     }
 
 

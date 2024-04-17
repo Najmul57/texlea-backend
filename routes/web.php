@@ -2,21 +2,26 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Admin\ChildCategoryController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\GlobalLocationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //frontend
-
+Route::get('/',[FrontendController::class, 'slider'])->name('home.slider');
 
 //dashboard
 Route::get('/admin/panel', function () {
@@ -61,6 +66,46 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [CountryController::class, 'edit'])->name('country.edit');
         Route::post('/update/{id}', [CountryController::class, 'update'])->name('country.update');
         Route::get('/destroy/{id}', [CountryController::class, 'destroy'])->name('country.destroy');
+    });
+    //global location
+    Route::prefix('global-location')->group(function () { // Change here
+        Route::get('/list', [GlobalLocationController::class, 'index'])->name('global_location.index');
+        Route::get('/create', [GlobalLocationController::class, 'create'])->name('global_location.create');
+        Route::post('/store', [GlobalLocationController::class, 'store'])->name('global_location.store');
+        Route::get('/edit/{id}', [GlobalLocationController::class, 'edit'])->name('global_location.edit');
+        Route::post('/update/{id}', [GlobalLocationController::class, 'update'])->name('global_location.update');
+        Route::get('/destroy/{id}', [GlobalLocationController::class, 'destroy'])->name('global_location.destroy');
+    });
+    //category
+    Route::prefix('category')->group(function () { // Change here
+        Route::get('/list', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::post('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::get('/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    });
+
+    //subcategory
+    Route::prefix('subcategory')->group(function () { // Change here
+        Route::get('/list', [SubCategoryController::class, 'index'])->name('subcategory.index');
+        Route::get('/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
+        Route::post('/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
+        Route::get('/edit/{id}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
+        Route::post('/update/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
+        Route::get('/destroy/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');
+    });
+    //childcategory
+    Route::prefix('childcategory')->group(function () { // Change here
+        Route::get('/list', [ChildCategoryController::class, 'index'])->name('childcategory.index');
+        Route::get('/create', [ChildCategoryController::class, 'create'])->name('childcategory.create');
+        Route::post('/store', [ChildCategoryController::class, 'store'])->name('childcategory.store');
+        Route::get('/edit/{id}', [ChildCategoryController::class, 'edit'])->name('childcategory.edit');
+        Route::post('/update/{id}', [ChildCategoryController::class, 'update'])->name('childcategory.update');
+        Route::get('/destroy/{id}', [ChildCategoryController::class, 'destroy'])->name('childcategory.destroy');
+
+        Route::get('/get-subcategories/{category_id}', [ChildCategoryController::class, 'getSubcategories'])->name('get.subcategories');
+       
     });
 
     //about
