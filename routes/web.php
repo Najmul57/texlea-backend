@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -62,11 +63,13 @@ Route::prefix('admin')->group(function () {
         Route::get('/destroy/{id}', [CountryController::class, 'destroy'])->name('country.destroy');
     });
 
+    //about
     Route::get('about', [AboutController::class, 'about'])->name('about.page');
-    Route::post('about/update/{id}', [AboutController::class, 'update'])->name('about.update'); // Changed from GET to POST
-    
+    Route::post('about/update/{id}', [AboutController::class, 'update'])->name('about.update');
 
-    
+    //setting
+    Route::get('setting', [SettingController::class, 'setting'])->name('setting.page');
+    Route::post('setting/update/{id}', [SettingController::class, 'update'])->name('setting.update');
 });
 
 
