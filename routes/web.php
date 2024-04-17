@@ -61,16 +61,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/update/{id}', [CountryController::class, 'update'])->name('country.update');
         Route::get('/destroy/{id}', [CountryController::class, 'destroy'])->name('country.destroy');
     });
-    //country
-    Route::prefix('about')->group(function () { // Change here
-        Route::get('/show/{id}', [AboutController::class, 'show'])->name('about.show');
-        Route::get('/list', [AboutController::class, 'index'])->name('about.index');
-        Route::get('/create', [AboutController::class, 'create'])->name('about.create');
-        Route::post('/store', [AboutController::class, 'store'])->name('about.store');
-        Route::get('/edit/{id}', [AboutController::class, 'edit'])->name('about.edit');
-        Route::post('/update/{id}', [AboutController::class, 'update'])->name('about.update');
-        Route::get('/destroy/{id}', [AboutController::class, 'destroy'])->name('about.destroy');
-    });
+
+    Route::get('about', [AboutController::class, 'about'])->name('about.page');
+    Route::post('about/update/{id}', [AboutController::class, 'update'])->name('about.update'); // Changed from GET to POST
+    
+
+    
 });
 
 

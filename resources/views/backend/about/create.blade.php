@@ -23,56 +23,105 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body p-3">
-                        <form action="{{ route('feature.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('about.update', $abouts->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="short_about">Short Description</label>
-                                        <textarea name="short_about" id="short_about" class="form-control"></textarea>
-                                    </div>
+                                        <textarea name="short_about" id="short_about" class="form-control">{{ $abouts->short_about }}</textarea>
+                                    </div>                                    
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="long_about">Long Description</label>
-                                        <textarea name="long_about" id="long_about" class="form-control"></textarea>
+                                        <textarea name="long_about" id="long_about" class="form-control">{{ $abouts->long_about }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="mission">Mission</label>
-                                        <textarea name="mission" id="mission" class="form-control"></textarea>
+                                        <textarea name="mission" id="mission" class="form-control">{{ $abouts->mission }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="vission">Vission</label>
-                                        <textarea name="vission" id="vission" class="form-control"></textarea>
+                                        <textarea name="vission" id="vission" class="form-control">{{ $abouts->vission }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="quality">Quality</label>
-                                        <textarea name="quality" id="quality" class="form-control"></textarea>
+                                        <textarea name="quality" id="quality" class="form-control">{{ $abouts->quality }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="service">Service</label>
-                                        <textarea name="service" id="service" class="form-control"></textarea>
+                                        <textarea name="service" id="service" class="form-control">{{ $abouts->service }}</textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group my-3">
-                                <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
-                                <img id="image-preview" src="#" alt="Preview"
-                                    style="display: none; max-width: 100px; height: auto;margin-top:10px">
+                                <label for="about_image">About Image</label>
+                                <input type="file" name="about_image" class="form-control image">
+                                @if ($abouts->about_image)
+                                    <img class="image-preview" src="{{ asset('uploads/about/' . $abouts->about_image) }}" alt="Preview"
+                                         style="max-width: 100px; height: auto; margin-top: 10px;">
+                                @else
+                                    <img class="image-preview" src="#" alt="Preview"
+                                         style="display: none; max-width: 100px; height: auto; margin-top: 10px;">
+                                @endif
+                            </div>                            
+                            <div class="form-group my-3">
+                                <label for="mission_image">Mission Image</label>
+                                <input type="file" name="mission_image" class="form-control image">
+                                @if ($abouts->mission_image)
+                                    <img class="image-preview" src="{{ asset('uploads/about/' . $abouts->mission_image) }}" alt="Preview"
+                                         style="max-width: 100px; height: auto; margin-top: 10px;">
+                                @else
+                                    <img class="image-preview" src="#" alt="Preview"
+                                         style="display: none; max-width: 100px; height: auto; margin-top: 10px;">
+                                @endif
                             </div>
-                    </div>
+                            <div class="form-group my-3">
+                                <label for="vission_image">Vission Image</label>
+                                <input type="file" name="vission_image" class="form-control image">
+                                @if ($abouts->vission_image)
+                                <img class="image-preview" src="{{ asset('uploads/about/' . $abouts->vission_image) }}" alt="Preview"
+                                     style="max-width: 100px; height: auto; margin-top: 10px;">
+                            @else
+                                <img class="image-preview" src="#" alt="Preview"
+                                     style="display: none; max-width: 100px; height: auto; margin-top: 10px;">
+                            @endif
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="quality_image">Quality Image</label>
+                                <input type="file" name="quality_image" class="form-control image">
+                                @if ($abouts->quality_image)
+                                    <img class="image-preview" src="{{ asset('uploads/about/' . $abouts->quality_image) }}" alt="Preview"
+                                         style="max-width: 100px; height: auto; margin-top: 10px;">
+                                @else
+                                    <img class="image-preview" src="#" alt="Preview"
+                                         style="display: none; max-width: 100px; height: auto; margin-top: 10px;">
+                                @endif
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="service_image">Service Image</label>
+                                <input type="file" name="service_image" class="form-control image">
+                                @if ($abouts->service_image)
+                                <img class="image-preview" src="{{ asset('uploads/about/' . $abouts->service_image) }}" alt="Preview"
+                                     style="max-width: 100px; height: auto; margin-top: 10px;">
+                            @else
+                                <img class="image-preview" src="#" alt="Preview"
+                                     style="display: none; max-width: 100px; height: auto; margin-top: 10px;">
+                            @endif
+                            </div>
 
-                    <button type="submit" class="btn  btn-primary">Submit</button>
-                    </form>
+                            <button type="submit" class="btn  btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,6 +130,26 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+    <script>
+        const imageInputs = document.querySelectorAll('.image');
+
+        imageInputs.forEach(function(imageInput) {
+            imageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                const imagePreview = event.target.nextElementSibling;
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
+
 
     <script>
         // Initialize CKEditor for all textareas with class "editor"
@@ -143,24 +212,6 @@
                 .catch(error => {
                     console.error(error);
                 });
-        });
-    </script>
-
-    <script>
-        // JavaScript to display preview of uploaded image
-        const imageInput = document.getElementById('image');
-        const imagePreview = document.getElementById('image-preview');
-
-        imageInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            }
-
-            reader.readAsDataURL(file);
         });
     </script>
 @endsection
