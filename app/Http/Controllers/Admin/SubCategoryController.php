@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Subcategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SubCategoryController extends Controller
 {
@@ -26,6 +27,7 @@ class SubCategoryController extends Controller
         $data = new Subcategory();
         $data->category_id = $request->input('category_id');
         $data->name = $request->input('name');
+        $data->slug = Str::slug($request->input('name'));
 
         $data->save();
 
@@ -48,6 +50,7 @@ class SubCategoryController extends Controller
         $data = Subcategory::findOrFail($id);
         $data->category_id = $request->input('category_id');
         $data->name = $request->input('name');
+        $data->slug = Str::slug($request->input('name'));
         
         $data->save();
 

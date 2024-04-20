@@ -32,7 +32,7 @@
                 <div class="single__contact">
                     <img src="{{ asset('frontend') }}/images/contact/opening.png" alt="">
                     <h4>Opening Hours</h4>
-                    <p>Saturday - Thursday: 10AM - 7PM (UTC +06:00)</p>
+                    <p>{{ $settings->duration }}</p>
                 </div>
             </div>
         </div>
@@ -43,22 +43,23 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3">
-                <form action="" method="post" class="card p-3"
+                <form action="{{ route('form.submit') }}" method="post" class="card p-3"
                     style="box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+                    @csrf
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" name="name" id="name" class="form-control"
-                            placeholder="Your Name">
+                            placeholder="Your Name" required>
                     </div>
                     <div class="form-group mt-3">
                         <label for="email">Full Email</label>
                         <input type="email" name="email" id="email" class="form-control"
-                            placeholder="Your Email">
+                            placeholder="Your Email" required>
                     </div>
                     <div class="form-group mt-3">
                         <label for="subject">Subject</label>
                         <input type="text" name="subject" id="subject" class="form-control"
-                            placeholder="Your Subject">
+                            placeholder="Your Subject" required>
                     </div>
                     <div class="form-group mt-3">
                         <label for="message">Your Message</label>

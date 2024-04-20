@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use Illuminate\Http\Request;
+use Intervention\Image\Image;
+use App\Http\Controllers\Controller;
 
 class CertificateController extends Controller
 {
@@ -28,6 +29,7 @@ class CertificateController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/certificate'), $filename);
+            Image::make(public_path('uploads/certificate') . '/' . $filename)->resize(565, 200)->save('uploads/certificate/' . $filename);
             $data->image = $filename;
         }
 
@@ -59,6 +61,7 @@ class CertificateController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/certificate'), $filename);
+            Image::make(public_path('uploads/certificate') . '/' . $filename)->resize(565, 200)->save('uploads/certificate/' . $filename);
             $data->image = $filename;
         }
 

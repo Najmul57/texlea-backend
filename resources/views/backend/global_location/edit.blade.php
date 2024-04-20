@@ -4,7 +4,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Slider List</h5>
+                <h5 class="bc-title">Global Location Update</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@
                             @csrf
                             <div class="form-group my-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" value="{{ $data->name }}">
+                                <input type="text" name="name" class="form-control" value="{{ $data->name }}" required>
                             </div>
                             <div class="form-group my-3">
                                 <label for="image">Image</label>

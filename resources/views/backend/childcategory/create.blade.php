@@ -10,7 +10,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">ChildCategory List</h5>
+                <h5 class="bc-title">ChildCategory Create</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                             @csrf
                             <div class="form-group my-3">
                                 <label for="category_id">Category Name</label>
-                                <select name="category_id" id="category_id" class="form-select">
+                                <select name="category_id"  id="category_id" class="form-select">
                                     <option value="" selected hidden disabled>Select Category</option>
                                     @foreach ($category as $item)
                                         <option value="{{ $item->id }}">{{ ucfirst($item->name) }}</option>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="form-group my-3">
                                 <label for="name">ChildCategory Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="enter subcategory"
+                                <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="enter subcategory"
                                     required>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>

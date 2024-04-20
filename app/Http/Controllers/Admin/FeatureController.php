@@ -30,6 +30,7 @@ class FeatureController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/feature'), $filename);
+            Image::make(public_path('uploads/country') . '/' . $filename)->resize(420, 260)->save('uploads/country/' . $filename);
             $data->image = $filename;
         }
 
@@ -63,6 +64,7 @@ class FeatureController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/feature'), $filename);
+            Image::make(public_path('uploads/country') . '/' . $filename)->resize(420, 260)->save('uploads/country/' . $filename);
             $data->image = $filename;
         }
 

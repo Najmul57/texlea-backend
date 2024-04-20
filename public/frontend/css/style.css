@@ -30,6 +30,7 @@ a {
 .header-area.sticky {
     position: fixed;
     width: 100%;
+    top: 0;
     transition: all .5s ease-in-out;
 }
 
@@ -150,9 +151,10 @@ ul.child__category {
     display: block;
     left: 100%;
     width: 200px;
+    height: 100%;
     top: 0;
     transition: all .5s ease-in-out;
-    border: .5px solid #ddd;
+    /* border: .5px solid #ddd; */
     opacity: 0;
     visibility: hidden;
 }
@@ -172,6 +174,7 @@ ul.subchild__category {
     left: 100%;
     background: #fff;
     width: 200px;
+    height: 100%;
     display: block;
     top: 0;
     transition: all .5s ease-in-out;
@@ -891,7 +894,7 @@ ul.slick-dots li.slick-active button {
 .single__contact a {
     display: block;
     color: #000;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .single__contact:hover {
@@ -1124,4 +1127,16 @@ ul.slick-dots li.slick-active button {
     background: #000;
     transform: translateY(-50%);
     border-radius: 50%;
+}
+
+.slick-slide.slick-current.slick-active.slick-center .global__office h3 {
+    font-size: 25px;
+}
+
+.slick-slide.slick-current.slick-active.slick-center .global__office p {
+    color: #fff;
+}
+
+.global__office p {
+    margin-bottom: 10px;
 }

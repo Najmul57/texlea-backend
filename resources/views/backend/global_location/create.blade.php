@@ -10,7 +10,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Global Location List</h5>
+                <h5 class="bc-title">Global Location Create</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,11 +33,11 @@
                             @csrf
                             <div class="form-group my-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="enter name">
+                                <input type="text" name="name" class="form-control" placeholder="enter name" required>
                             </div>
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control" multiple>
+                                <input type="file" name="image" id="image" class="form-control" required>
                                 <div id="image-preview-container" style="margin-top: 10px;"></div>
                             </div>
                             <div class="form-group my-3">

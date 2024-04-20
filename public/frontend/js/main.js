@@ -10,7 +10,7 @@
             $('.header-area').removeClass("sticky");
         }
     });
-    
+
 
 
     //category toggle
@@ -142,7 +142,7 @@
         dots: true,
         responsive: [
             {
-                breakpoint: 768,
+                breakpoint: 1200,
                 settings: {
                     centerMode: true,
                     centerPadding: '40px',
@@ -150,7 +150,23 @@
                 }
             },
             {
-                breakpoint: 480,
+                breakpoint: 991,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 576,
                 settings: {
                     centerMode: true,
                     centerPadding: '40px',

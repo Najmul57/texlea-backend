@@ -4,7 +4,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Slider List</h5>
+                <h5 class="bc-title">Certificate Updae</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@
                             @csrf
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
+                                <input type="file" name="image" id="image" class="form-control" >
                                 <img id="image-preview" src="{{ $data->image ? asset('uploads/certificate/' . $data->image) : '#' }}" alt="Preview"
                                     style="display: {{ $data->image ? 'block' : 'none' }}; max-width: 100px; height: auto; margin-top: 10px;">
                             </div>

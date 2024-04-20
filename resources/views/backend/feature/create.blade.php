@@ -4,7 +4,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Feature List</h5>
+                <h5 class="bc-title">Feature Create</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,15 +27,15 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" name="name" class="form-control" required placeholder="enter name">
                             </div>
                             <div class="form-group">
                                 <label for="count">Number</label>
-                                <input type="number" name="count" class="form-control">
+                                <input type="number" name="count" class="form-control" required placeholder="enter number">
                             </div>
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
+                                <input type="file" name="image" id="image" class="form-control" required>
                                 <img id="image-preview" src="#" alt="Preview"
                                     style="display: none; max-width: 100px; height: auto;margin-top:10px">
                             </div>

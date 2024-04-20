@@ -33,16 +33,19 @@
                             @csrf
                             <div class="form-group my-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="country name">
+                                <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="country name" required>
                             </div>
                             <div class="form-group my-3">
-                                <label for="image">Certificate</label>
-                                <input type="file" name="image" id="image" class="form-control">
+                                <label for="image">Image</label>
+                                <input type="file" name="image" id="image" class="form-control" required>
                                 <div id="image-preview-container" style="margin-top: 10px;"></div>
                             </div>
                             <div class="form-group my-3">
                                 <label for="list">List</label>
                                 <textarea name="list" id="editor" class="form-control" cols="30" rows="10"></textarea>
+                                @error('list')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

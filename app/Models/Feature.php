@@ -9,5 +9,7 @@ class Feature extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'count','image'];
+    // protected $fillable = ['name', 'count','image'];
+
+    protected $guarded = [];
 }

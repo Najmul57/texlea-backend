@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ProductGallery;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ChildCategory extends Model
 {
@@ -18,6 +19,9 @@ class ChildCategory extends Model
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class, 'subcategory_id');
+    }
+    public function productgallery(){
+        return $this->hasMany(ProductGallery::class,'productgallery_id');
     }
     
 }

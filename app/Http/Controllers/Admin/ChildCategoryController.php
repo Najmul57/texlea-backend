@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Subcategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ChildCategory;
 use App\Http\Controllers\Controller;
-use App\Models\Subcategory;
 
 class ChildCategoryController extends Controller
 {
@@ -29,6 +30,7 @@ class ChildCategoryController extends Controller
         $data->category_id = $request->input('category_id');
         $data->subcategory_id = $request->input('subcategory_id');
         $data->name = $request->input('name');
+        $data->slug = Str::slug($request->input('name'));
 
         $data->save();
 
@@ -54,6 +56,7 @@ class ChildCategoryController extends Controller
         $data->category_id = $request->input('category_id');
         $data->subcategory_id = $request->input('subcategory_id');
         $data->name = $request->input('name');
+        $data->slug = Str::slug($request->input('name'));
 
         $data->save();
 

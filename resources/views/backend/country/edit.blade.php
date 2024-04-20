@@ -38,6 +38,9 @@
                             <div class="form-group my-3">
                                 <label for="list">List</label>
                                 <textarea name="list" id="editor" class="form-control" cols="30" rows="10">{!! $data->list !!}</textarea>
+                                @error('list')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn  btn-primary">Submit</button>
                         </form>

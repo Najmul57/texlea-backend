@@ -10,7 +10,7 @@
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Category List</h5>
+                <h5 class="bc-title">Category Create</h5>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('admin.panel') }}">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,11 +29,17 @@
             <div class="col-12 col-md-6 col-sm-12 mx-auto">
                 <div class="card">
                     <div class="card-body p-3">
-                        <form action="{{ route('category.store') }}" method="POST">
+                        <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group my-3">
-                                <label for="image">Category Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="enter category" required>
+                                <label for="name">Category Name</label>
+                                <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="enter category" required>
+                            </div>
+                            <div class="form-group my-3">
+                                <label for="image">Image</label>
+                                <input type="file" name="image" id="image" class="form-control" required>
+                                <img id="slide-preview" src="#" alt="Preview"
+                                    style="display: none; max-width: 100px; height: auto;margin-top:10px">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
@@ -42,4 +48,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // JavaScript to display preview of uploaded image
+        const slideInput = document.getElementById('image');
+        const slidePreview = document.getElementById('slide-preview');
+
+        slideInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                slidePreview.src = e.target.result;
+                slidePreview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
 @endsection

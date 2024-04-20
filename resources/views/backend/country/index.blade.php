@@ -20,7 +20,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-md-8 mx-auto">
                 <div class="card">
                     <div class="card-body p-0">
                         <div class="table-responsive active-projects manage-client">
@@ -31,7 +31,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Image</th>
-                                        <th>List</th>
+                                        <th>Feature</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

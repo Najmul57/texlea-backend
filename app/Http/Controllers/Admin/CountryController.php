@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Intervention\Image\Image;
 
 class CountryController extends Controller
 {
@@ -21,6 +22,9 @@ class CountryController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'list' => 'required'
+        ]);
 
         $data = new Country();
         $data->name = $request->input('name');
@@ -30,6 +34,7 @@ class CountryController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/country'), $filename);
+            Image::make(public_path('uploads/country') . '/' . $filename)->resize(420, 260)->save('uploads/country/' . $filename);
             $data->image = $filename;
         }
 
@@ -50,6 +55,10 @@ class CountryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'list' => 'required'
+        ]);
+        
         $data = Country::findOrFail($id);
         $data->name = $request->input('name');
         $data->list = $request->input('list');
@@ -62,6 +71,7 @@ class CountryController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/country'), $filename);
+            Image::make(public_path('uploads/country') . '/' . $filename)->resize(420, 260)->save('uploads/country/' . $filename);
             $data->image = $filename;
         }
 

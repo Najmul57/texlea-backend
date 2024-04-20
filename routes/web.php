@@ -8,9 +8,11 @@ use App\Http\Controllers\Admin\ChildCategoryController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\GlobalLocationController;
+use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Frontend\ContactFormController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +23,25 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //frontend
-Route::get('/',[FrontendController::class, 'slider'])->name('home.slider');
+Route::get('/', [FrontendController::class, 'index'])->name('home.slider');
+
+//global location page
+Route::get('location', [FrontendController::class, 'location'])->name('global.location');
+
+// about page
+Route::get('about', [FrontendController::class, 'about'])->name('about');
+
+//category
+Route::get('category/{slug}', [FrontendController::class, 'category'])->name('category');
+
+//subcategory
+Route::get('subcategory/{slug}', [FrontendController::class, 'subcategory'])->name('subcategory');
+
+//childcategory
+Route::get('childcategory/{slug}', [FrontendController::class, 'childcategory'])->name('childcategory');
+
+//contact form
+Route::post('form-submit', [ContactFormController::class, 'formsubmit'])->name('form.submit');
 
 //dashboard
 Route::get('/admin/panel', function () {
@@ -29,7 +49,7 @@ Route::get('/admin/panel', function () {
 })->middleware(['auth', 'verified'])->name('admin.panel');
 
 //admin controller
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
 
     //slider
     Route::prefix('slider')->group(function () { // Change here
@@ -77,7 +97,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/destroy/{id}', [GlobalLocationController::class, 'destroy'])->name('global_location.destroy');
     });
     //category
-    Route::prefix('category')->group(function () { // Change here
+    Route::prefix('category')->group(function () {
         Route::get('/list', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
         Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
@@ -87,7 +107,7 @@ Route::prefix('admin')->group(function () {
     });
 
     //subcategory
-    Route::prefix('subcategory')->group(function () { // Change here
+    Route::prefix('subcategory')->group(function () {
         Route::get('/list', [SubCategoryController::class, 'index'])->name('subcategory.index');
         Route::get('/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
         Route::post('/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
@@ -96,7 +116,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/destroy/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');
     });
     //childcategory
-    Route::prefix('childcategory')->group(function () { // Change here
+    Route::prefix('childcategory')->group(function () {
         Route::get('/list', [ChildCategoryController::class, 'index'])->name('childcategory.index');
         Route::get('/create', [ChildCategoryController::class, 'create'])->name('childcategory.create');
         Route::post('/store', [ChildCategoryController::class, 'store'])->name('childcategory.store');
@@ -105,8 +125,21 @@ Route::prefix('admin')->group(function () {
         Route::get('/destroy/{id}', [ChildCategoryController::class, 'destroy'])->name('childcategory.destroy');
 
         Route::get('/get-subcategories/{category_id}', [ChildCategoryController::class, 'getSubcategories'])->name('get.subcategories');
-       
     });
+    //product-gallery
+    Route::prefix('product-gallery')->group(function () {
+        Route::get('/list', [ProductGalleryController::class, 'index'])->name('product_gallery.index');
+        Route::get('/create', [ProductGalleryController::class, 'create'])->name('product_gallery.create');
+        Route::post('/store', [ProductGalleryController::class, 'store'])->name('product_gallery.store');
+        Route::get('/edit/{id}', [ProductGalleryController::class, 'edit'])->name('product_gallery.edit');
+        Route::post('/update/{id}', [ProductGalleryController::class, 'update'])->name('product_gallery.update');
+        Route::get('/destroy/{id}', [ProductGalleryController::class, 'destroy'])->name('product_gallery.destroy');
+
+        Route::get('/get-subcategories/{category_id}', [ProductGalleryController::class, 'getSubcategories'])->name('get.subcategories');
+        Route::get('/get-childcategories/{subcategory_id}', [ProductGalleryController::class, 'getChildcategories'])->name('get.childcategories');
+
+    });
+
 
     //about
     Route::get('about', [AboutController::class, 'about'])->name('about.page');
@@ -115,6 +148,10 @@ Route::prefix('admin')->group(function () {
     //setting
     Route::get('setting', [SettingController::class, 'setting'])->name('setting.page');
     Route::post('setting/update/{id}', [SettingController::class, 'update'])->name('setting.update');
+
+    //contact message
+    Route::get('contact-message', [AdminController::class, 'contactmessage'])->name('contact.message');
+    Route::get('contact-message/destroy/{id}', [AdminController::class, 'destroy'])->name('contact.message.destroy');
 });
 
 

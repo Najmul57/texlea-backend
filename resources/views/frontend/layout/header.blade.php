@@ -6,56 +6,68 @@
                     <div class="header-left">
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('uploads/setting/'.$settings->logo) }}" alt="logo">
+                                <img src="{{ asset('uploads/setting/' . $settings->logo) }}" alt="logo">
                             </a>
                         </div>
                         <div class="header-menu d-none d-lg-block">
                             <ul>
                                 <li><a href="{{ url('/') }}">home</a></li>
-                                <li><a href="about.html">about</a></li>
-                                <li><a href="category.html">category <i class="fa fa-angle-down"></i></a>
+                                <li><a href="{{ route('about') }}">about</a></li>
+
+                                @php
+                                    $categories = \App\Models\Category::latest()->get();
+                                @endphp
+
+                                <li><a href="javascript:void(0)">category <i class="fa fa-angle-down"></i></a>
                                     <ul class="sub__category">
-                                        <li><a href="category.html">apparel <i class="fa fa-angle-right"></i></a>
-                                            <ul class="child__category">
-                                                <li><a href="category.html">babies<i class="fa fa-angle-right"></i></a>
-                                                    <ul class="subchild__category">
-                                                        <li><a href="category.html">Baby T-Shirt, Tops</a></li>
-                                                        <li><a href="category.html">Baby Clothes</a></li>
-                                                        <li><a href="category.html">Organic Baby Clothing</a></li>
-                                                        <li><a href="category.html">kids</a></li>
-                                                        <li><a href="category.html">kids</a></li>
-                                                        <li><a href="category.html">kids</a></li>
-                                                        <li><a href="category.html">kids</a></li>
-                                                        <li><a href="category.html">kids</a></li>
-                                                        <li><a href="category.html">kids</a></li>
+                                        @foreach ($categories as $category)
+                                            @php
+                                                $subcategories = $category->subcategories()->latest()->get();
+                                            @endphp
+
+                                            @if ($subcategories->isNotEmpty())
+                                                <li>
+                                                    <a href="{{ route('category',$category->slug) }}">{{ $category->name }} <i
+                                                            class="fa fa-angle-right"></i></a>
+                                                    <ul class="child__category">
+                                                        @foreach ($subcategories as $subcategory)
+                                                            @php
+                                                                $childcategories = $subcategory
+                                                                    ->childcategories()
+                                                                    ->latest()
+                                                                    ->get();
+                                                            @endphp
+
+                                                            @if ($childcategories->isNotEmpty())
+                                                                <li>
+                                                                    <a href="{{ route('subcategory',$subcategory->slug) }}">{{ $subcategory->name }} <i
+                                                                            class="fa fa-angle-right"></i></a>
+                                                                    <ul class="subchild__category">
+                                                                        @foreach ($childcategories as $childcategory)
+                                                                            <li><a
+                                                                                    href="{{ route('childcategory',$childcategory->slug) }}">{{ $childcategory->name }}</a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </li>
+                                                            @else
+                                                                <li>
+                                                                    <a href="{{ route('subcategory',$subcategory->slug) }}">{{ $subcategory->name }}</a>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
                                                     </ul>
                                                 </li>
-                                                <li><a href="category.html">kids</a></li>
-                                                <li><a href="category.html">men</a></li>
-                                                <li><a href="category.html">women</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="category.html">footwear <i class="fa fa-angle-right"></i></a>
-                                            <ul class="child__category">
-                                                <li><a href="category.html">men</a></li>
-                                                <li><a href="category.html">women</a></li>
-                                                <li><a href="category.html">kids</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="category.html">handicraft <i class="fa fa-angle-right"></i></a>
-                                            <ul class="child__category">
-                                                <li><a href="category.html">Pottery</a></li>
-                                                <li><a href="category.html">Bamboo</a></li>
-                                                <li><a href="category.html">Brass handicrafts</a></li>
-                                                <li><a href="category.html">Marble Craft</a></li>
-                                                <li><a href="category.html">Carving</a></li>
-                                                <li><a href="category.html">Carpet weaving</a></li>
-                                                <li><a href="category.html">Terracotta</a></li>
-                                            </ul>
-                                        </li>
+                                            @else
+                                                <li>
+                                                    <a href="{{ route('category',$category->slug) }}">{{ $category->name }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="location.html">Global Location</a></li>
+
+                                <li><a href="{{ route('global.location') }}">Global Location</a></li>
                             </ul>
                         </div>
                     </div>

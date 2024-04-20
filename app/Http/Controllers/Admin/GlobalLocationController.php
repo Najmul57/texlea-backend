@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\GlobalLocation;
 use Illuminate\Http\Request;
 
+
 class GlobalLocationController extends Controller
 {
     public function index()
@@ -30,6 +31,7 @@ class GlobalLocationController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/location'), $filename);
+            Image::make(public_path('uploads/location') . '/' . $filename)->resize(145, 90)->save('uploads/location/' . $filename);
             $data->image = $filename;
         }
 
@@ -63,6 +65,7 @@ class GlobalLocationController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/location'), $filename);
+            Image::make(public_path('uploads/location') . '/' . $filename)->resize(145, 90)->save('uploads/location/' . $filename);
             $data->image = $filename;
         }
 

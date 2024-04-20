@@ -30,6 +30,7 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>Name</th>
+                                        <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,7 +38,8 @@
                                     @foreach ($categories as $key => $item)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $item->name }}</td>
+                                            <td>{{ ucfirst($item->name) }}</td>
+                                            <td><img src="{{ asset('uploads/category/'.$item->image) }}" alt="{{ $item->name }}" style="width: 100px"></td>
                                             <td>
                                                 <a href="{{ route('category.edit', $item->id) }}"
                                                     class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>

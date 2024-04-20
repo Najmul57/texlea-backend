@@ -20,4 +20,9 @@ class Category extends Model
     {
         return $this->hasMany(ChildCategory::class, 'childcategory_id');
     }
+
+    public function productgallery(){
+        return $this->hasMany(ProductGallery::class,'productgallery_id');
+    }
+    
 }

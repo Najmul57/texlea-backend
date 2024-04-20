@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('twitter')->nullable();
             $table->text('dhaka_office')->nullable();
             $table->text('italy_office')->nullable();
+            $table->text('duration')->nullable();
             $table->timestamps();
         });
     }

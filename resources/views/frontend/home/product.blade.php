@@ -8,70 +8,18 @@
     </div>
     <div class="container">
         <div class="row g-3">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-portfolio">
-                    <div class="portfolio-image">
-                        <img src="{{ asset('frontend') }}/images/portfolio/img1.jpg" alt="" class="w-100">
+            @foreach ($categories as $category)
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-portfolio">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('uploads/category/' . $category->image) }}" alt="" class="w-100">
+                        </div>
+                        <a href="{{ route('category',$category->slug) }}" class="portfolio-title">
+                            {{ ucfirst($category->name) }}
+                        </a>
                     </div>
-                    <a href="category.html" class="portfolio-title">
-                        lorem ipsum
-                    </a>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-portfolio">
-                    <div class="portfolio-image">
-                        <img src="{{ asset('frontend') }}/images/portfolio/img2.jpg" alt="" class="w-100">
-                    </div>
-                    <a href="category.html" class="portfolio-title">
-                        lorem ipsum
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-portfolio">
-                    <div class="portfolio-image">
-                        <img src="{{ asset('frontend') }}/images/portfolio/img3.jpg" alt=""
-                            class="w-100">
-                    </div>
-                    <a href="category.html" class="portfolio-title">
-                        lorem ipsum
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-portfolio">
-                    <div class="portfolio-image">
-                        <img src="{{ asset('frontend') }}/images/portfolio/img4.jpg" alt=""
-                            class="w-100">
-                    </div>
-                    <a href="category.html" class="portfolio-title">
-                        lorem ipsum
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-portfolio">
-                    <div class="portfolio-image">
-                        <img src="{{ asset('frontend') }}/images/portfolio/img5.jpg" alt=""
-                            class="w-100">
-                    </div>
-                    <a href="category.html" class="portfolio-title">
-                        lorem ipsum
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-portfolio">
-                    <div class="portfolio-image">
-                        <img src="{{ asset('frontend') }}/images/portfolio/img6.jpg" alt=""
-                            class="w-100">
-                    </div>
-                    <a href="category.html" class="portfolio-title">
-                        lorem ipsum
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

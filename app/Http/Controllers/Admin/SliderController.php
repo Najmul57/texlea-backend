@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Slider;
+use Intervention\Image\Image;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SliderController extends Controller
 {
+
     public function index()
     {
         $sliders = Slider::latest()->get();
@@ -29,6 +31,7 @@ class SliderController extends Controller
             $file = $request->file('slide');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/slider'), $filename);
+            Image::make(public_path('uploads/slider') . '/' . $filename)->resize(2100, 800)->save('uploads/slider/' . $filename);
             $data->slide = $filename;
         }
 
@@ -39,7 +42,6 @@ class SliderController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('slider.index')->with($notification);
-
     } // end method
 
     public function edit($id)
@@ -62,6 +64,7 @@ class SliderController extends Controller
             $file = $request->file('slide');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/slider'), $filename);
+            Image::make(public_path('uploads/slider') . '/' . $filename)->resize(2100, 800)->save('uploads/slider/' . $filename);
             $data->slide = $filename;
         }
 

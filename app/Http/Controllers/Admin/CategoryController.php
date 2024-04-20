@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Intervention\Image\Image;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -24,6 +26,15 @@ class CategoryController extends Controller
 
         $data = new Category();
         $data->name = $request->input('name');
+        $data->slug=Str::slug($request->input('name'));
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/category'), $filename);
+            Image::make(public_path('uploads/category') . '/' . $filename)->resize(420, 260)->save('uploads/category/' . $filename);
+            $data->image = $filename;
+        }
 
         $data->save();
 
@@ -44,6 +55,19 @@ class CategoryController extends Controller
     {
         $data = Category::findOrFail($id);
         $data->name = $request->input('name');
+        $data->slug=Str::slug($request->input('name'));
+
+        if ($request->hasFile('image')) {
+            if ($data->image) {
+                unlink(public_path('uploads/category') . '/' . $data->image);
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/category'), $filename);
+            Image::make(public_path('uploads/category') . '/' . $filename)->resize(420, 260)->save('uploads/category/' . $filename);
+            $data->image = $filename;
+        }
         
         $data->save();
 
@@ -59,6 +83,9 @@ class CategoryController extends Controller
     {
         $data = Category::findOrFail($id);
 
+        if ($data->image) {
+            unlink(public_path('uploads/category') . '/' . $data->image);
+        }
 
         $data->delete();
 

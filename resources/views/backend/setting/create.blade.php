@@ -62,6 +62,10 @@
                                 <label for="italy_office">Italy Office</label>
                                 <input type="text" name="italy_office" class="form-control" value="{{ $settings->italy_office }}">
                             </div>
+                            <div class="form-group">
+                                <label for="duration">Opening Hours</label>
+                                <input type="text" name="duration" class="form-control" value="{{ $settings->duration }}">
+                            </div>
 
                             <div class="form-group my-3">
                                 <label for="logo">Logo</label>
