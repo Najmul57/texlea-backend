@@ -5,7 +5,7 @@
             <div class="slider__content">
                 <h4>{{ $slider->title }}</h4>
                 <div class="slider__btn">
-                    <a href="" class="btn btn-sm">About US</a>
+                    <a href="{{ route('about') }}" class="btn btn-sm">About US</a>
                 </div>
             </div>
         </div>

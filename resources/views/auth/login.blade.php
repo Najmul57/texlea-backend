@@ -5,7 +5,7 @@
 @include('frontend.layout.offcanvas_menu')
 
 <!-- breadcrumb start -->
-<div class="breadcrumb-area" style="background-image: url({{ asset('frontend') }}/images/banner/banner-1.jpg);">
+<div class="breadcrumb-area">
     <div class="container">
         <h4>login</h4>
     </div>

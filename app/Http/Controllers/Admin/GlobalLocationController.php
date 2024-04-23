@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\GlobalLocation;
 use Illuminate\Http\Request;
+use Image;
 
 
 class GlobalLocationController extends Controller
@@ -58,7 +59,8 @@ class GlobalLocationController extends Controller
 
 
         if ($request->hasFile('image')) {
-            if ($data->image) {
+
+            if ($data->image && file_exists(public_path('uploads/location') . '/' . $data->image)) {
                 unlink(public_path('uploads/location') . '/' . $data->image);
             }
 
@@ -83,7 +85,7 @@ class GlobalLocationController extends Controller
     {
         $data = GlobalLocation::findOrFail($id);
 
-        if ($data->image) {
+        if ($data->image && file_exists(public_path('uploads/location') . '/' . $data->image)) {
             unlink(public_path('uploads/location') . '/' . $data->image);
         }
 

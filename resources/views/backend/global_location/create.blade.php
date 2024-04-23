@@ -38,6 +38,7 @@
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control" required>
+                                <span><strong class="text-danger">Dimention : </strong>145 x 90</span>
                                 <div id="image-preview-container" style="margin-top: 10px;"></div>
                             </div>
                             <div class="form-group my-3">
@@ -70,15 +71,15 @@
         // JavaScript to display preview of uploaded images
         const imageInput = document.getElementById('image');
         const imagePreviewContainer = document.getElementById('image-preview-container');
-    
+
         imageInput.addEventListener('change', function(event) {
             const files = event.target.files;
             imagePreviewContainer.innerHTML = ''; // Clear previous previews
-    
+
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 const reader = new FileReader();
-    
+
                 reader.onload = function(e) {
                     const imagePreview = document.createElement('img');
                     imagePreview.src = e.target.result;
@@ -87,7 +88,7 @@
                     imagePreview.style.marginRight = '5px';
                     imagePreviewContainer.appendChild(imagePreview);
                 }
-    
+
                 reader.readAsDataURL(file);
             }
         });

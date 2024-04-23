@@ -2,7 +2,7 @@
 @section('content')
     @include('frontend.layout.offcanvas_menu')
 
-    <div class="breadcrumb-area" style="background-image: url({{ asset('frontend') }}/images/banner/banner-1.jpg);">
+    <div class="breadcrumb-area">
         <div class="container">
             <h4>{{ $subcategory->name }}</h4>
         </div>

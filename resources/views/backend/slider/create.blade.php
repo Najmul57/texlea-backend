@@ -27,11 +27,13 @@
                             @csrf
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control"  required placeholder="enter title">
+                                <input type="text" name="title" class="form-control" required
+                                    placeholder="enter title">
                             </div>
                             <div class="form-group my-3">
                                 <label for="slide">Slide</label>
                                 <input type="file" name="slide" id="slide" class="form-control" required>
+                                <span><strong class="text-danger">Dimention : </strong>2100 x 800</span>
                                 <img id="slide-preview" src="#" alt="Preview"
                                     style="display: none; max-width: 100px; height: auto;margin-top:10px">
                             </div>

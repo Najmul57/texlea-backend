@@ -77,13 +77,13 @@
                         <ul>
                             <!-- <li class="d-none d-lg-block"><span title="search" data-bs-toggle="modal"
                                     data-bs-target="#searchModal"><i class="fa fa-search"></i></span></li> -->
-                            <li class="d-none d-lg-block"><a href="{{ $settings->facebook }}" title="facebook"><i
+                            <li class="d-none d-lg-block"><a href="{{ $settings->facebook }}" title="facebook" target="_blank"><i
                                         class="fa-brands fa-facebook-f"></i></a></li>
-                            <li class="d-none d-lg-block"><a href="{{ $settings->linkedin }}" title="linkedin"><i
+                            <li class="d-none d-lg-block"><a href="{{ $settings->linkedin }}" title="linkedin" target="_blank"><i
                                         class="fa-brands fa-linkedin-in"></i></a></li>
-                            <li class="d-none d-lg-block"><a href="{{ $settings->instagram }}" title="instagram"><i
+                            <li class="d-none d-lg-block"><a href="{{ $settings->instagram }}" title="instagram" target="_blank"><i
                                         class="fa-brands fa-instagram"></i></a></li>
-                            <li class="d-none d-lg-block"><a href="{{ $settings->twitter }}" title="twitter"><i
+                            <li class="d-none d-lg-block"><a href="{{ $settings->twitter }}" title="twitter" target="_blank"><i
                                         class="fa-brands fa-twitter"></i></a></li>
 
                             <li><span title="bars" data-bs-toggle="offcanvas" href="#offcanvasItem" role="button"

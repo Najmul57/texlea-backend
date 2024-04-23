@@ -20,6 +20,7 @@
                             ) !!}
                         </div>
                     </div>
+                    <h4 class="office_name">{{ ucfirst($office->name) }}</h4>
                 </div>
             @endforeach
         </div>

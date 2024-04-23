@@ -33,26 +33,26 @@
                             @csrf
                             <div class="form-group my-3">
                                 <label for="category_id">Select Category</label>
-                                <select name="category_id" id="category_id" class="form-select" required>
+                                <select name="category_id" id="category_id" class="form-select">
                                     <option selected disabled>Select Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                             <div class="form-group my-3">
                                 <label for="subcategory_id">Select Subcategory</label>
-                                <select name="subcategory_id" id="subcategory_id" class="form-select" required>
+                                <select name="subcategory_id" id="subcategory_id" class="form-select">
                                     <option value="" selected hidden disabled>Select Subcategory</option>
                                 </select>
-                            </div>  
+                            </div>
                             <div class="form-group my-3">
                                 <label for="childcategory_id">Select Subcategory</label>
-                                <select name="childcategory_id" id="childcategory_id" class="form-select" required>
+                                <select name="childcategory_id" id="childcategory_id" class="form-select">
                                     <option value="" selected hidden disabled>Select Childcategory</option>
                                 </select>
-                            </div>                            
+                            </div>
                             <div class="form-group my-3">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" id="name" class="form-control"
@@ -60,7 +60,8 @@
                             </div>
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
+                                <input type="file" name="image" id="image" class="form-control" required>
+                                <span><strong class="text-danger">Dimention : </strong>420 x 260</span>
                                 <img id="slide-preview" src="#" alt="Preview"
                                     style="display: none; max-width: 100px; height: auto;margin-top:10px">
                             </div>
@@ -73,7 +74,7 @@
     </div>
     <!-- Include jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             $('#category_id').change(function() {
@@ -81,40 +82,51 @@
                 if (category_id) {
                     $.ajax({
                         type: "GET",
-                        url: "{{ route('get.subcategories', ['category_id' => ':category_id']) }}".replace(':category_id', category_id),
+                        url: "{{ route('get.subcategories', ['category_id' => ':category_id']) }}"
+                            .replace(':category_id', category_id),
                         success: function(response) {
-                            $('#subcategory_id').empty().append('<option value="" selected disabled>Select Subcategory</option>');
+                            $('#subcategory_id').empty().append(
+                                '<option value="" selected disabled>Select Subcategory</option>'
+                                );
                             $.each(response, function(key, value) {
-                                $('#subcategory_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                                $('#subcategory_id').append('<option value="' + value
+                                    .id + '">' + value.name + '</option>');
                             });
                         }
                     });
                 } else {
-                    $('#subcategory_id').empty().append('<option value="" selected disabled>Select Subcategory</option>');
-                    $('#childcategory_id').empty().append('<option value="" selected disabled>Select Childcategory</option>');
+                    $('#subcategory_id').empty().append(
+                        '<option value="" selected disabled>Select Subcategory</option>');
+                    $('#childcategory_id').empty().append(
+                        '<option value="" selected disabled>Select Childcategory</option>');
                 }
             });
-    
+
             $('#subcategory_id').change(function() {
                 var subcategory_id = $(this).val();
                 if (subcategory_id) {
                     $.ajax({
                         type: "GET",
-                        url: "{{ route('get.childcategories', ['subcategory_id' => ':subcategory_id']) }}".replace(':subcategory_id', subcategory_id),
+                        url: "{{ route('get.childcategories', ['subcategory_id' => ':subcategory_id']) }}"
+                            .replace(':subcategory_id', subcategory_id),
                         success: function(response) {
-                            $('#childcategory_id').empty().append('<option value="" selected disabled>Select Childcategory</option>');
+                            $('#childcategory_id').empty().append(
+                                '<option value="" selected disabled>Select Childcategory</option>'
+                                );
                             $.each(response, function(key, value) {
-                                $('#childcategory_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                                $('#childcategory_id').append('<option value="' + value
+                                    .id + '">' + value.name + '</option>');
                             });
                         }
                     });
                 } else {
-                    $('#childcategory_id').empty().append('<option value="" selected disabled>Select Childcategory</option>');
+                    $('#childcategory_id').empty().append(
+                        '<option value="" selected disabled>Select Childcategory</option>');
                 }
             });
         });
     </script>
-       
+
     <script>
         const slideInput = document.getElementById('image');
         const slidePreview = document.getElementById('slide-preview');

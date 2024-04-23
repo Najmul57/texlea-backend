@@ -33,11 +33,13 @@
                             @csrf
                             <div class="form-group my-3">
                                 <label for="name">Category Name</label>
-                                <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="enter category" required>
+                                <input type="text" name="name" value="{{ old('name') }}" class="form-control"
+                                    placeholder="enter category" required>
                             </div>
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control" required>
+                                <span><strong class="text-danger">Dimention : </strong>420 x 260</span>
                                 <img id="slide-preview" src="#" alt="Preview"
                                     style="display: none; max-width: 100px; height: auto;margin-top:10px">
                             </div>

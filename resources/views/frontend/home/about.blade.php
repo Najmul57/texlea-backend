@@ -12,7 +12,7 @@
                     <h3>Directed by Italian Management</h3> <br>
                     <span><strong>About Texlea S.R.L.</strong></span>
                     <P>{!! $abouts->short_about !!}</P>
-                    <a href="about.html" class="btn about-btn">About US</a>
+                    <a href="{{route('about')}}" class="btn about-btn">About US</a>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Certificate;
 use Illuminate\Http\Request;
-use Intervention\Image\Image;
+use Image;
 use App\Http\Controllers\Controller;
 
 class CertificateController extends Controller
@@ -52,9 +52,9 @@ class CertificateController extends Controller
     {
         $data = Certificate::findOrFail($id);
 
-
         if ($request->hasFile('image')) {
-            if ($data->image) {
+
+            if ($data->image && file_exists(public_path('uploads/certificate') . '/' . $data->image)) {
                 unlink(public_path('uploads/certificate') . '/' . $data->image);
             }
 
@@ -79,7 +79,8 @@ class CertificateController extends Controller
     {
         $data = Certificate::findOrFail($id);
 
-        if ($data->image) {
+
+        if ($data->image && file_exists(public_path('uploads/certificate') . '/' . $data->image)) {
             unlink(public_path('uploads/certificate') . '/' . $data->image);
         }
 

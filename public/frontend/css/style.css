@@ -567,7 +567,7 @@ button.btn.account__btn:hover a {
     bottom: -40px;
     text-align: center;
     width: 100%;
-    background: #198754;
+    background: linear-gradient(90deg, rgba(0, 128, 0, 1) 0%, rgba(0, 128, 0, 1) 45%, rgba(0, 212, 255, 1) 100%);
     color: #fff;
     padding: 10px;
     line-height: 1;
@@ -679,9 +679,10 @@ button.btn.account__btn:hover a {
 
 /* breadcrumb start */
 .breadcrumb-area {
-    background-size: cover;
+    /* background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    background: repeating-radial-gradient(black, transparent 100px);
     background-attachment: fixed;
     position: relative;
     z-index: 2;
@@ -1139,4 +1140,13 @@ ul.slick-dots li.slick-active button {
 
 .global__office p {
     margin-bottom: 10px;
+}
+
+h4.office_name {
+    background: linear-gradient(90deg, rgba(0, 128, 0, 1) 0%, rgba(0, 128, 0, 1) 45%, rgba(0, 212, 255, 1) 100%);
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 10px;
+    font-size: 20px;
 }

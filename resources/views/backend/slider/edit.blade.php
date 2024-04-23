@@ -23,16 +23,19 @@
             <div class="col-12 col-md-6 col-sm-12 mx-auto">
                 <div class="card">
                     <div class="card-body p-3">
-                        <form action="{{ route('slider.update',$data->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('slider.update', $data->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control" value="{{ $data->title }}" required>
+                                <input type="text" name="title" class="form-control" value="{{ $data->title }}"
+                                    required>
                             </div>
                             <div class="form-group my-3">
                                 <label for="slide">Slide</label>
                                 <input type="file" name="slide" id="slide" class="form-control">
-                                <img id="slide-preview" src="{{ $data->slide ? asset('uploads/slider/' . $data->slide) : '#' }}" alt="Preview"
+                                <span><strong class="text-danger">Dimention : </strong>2100 x 800</span>
+                                <img id="slide-preview"
+                                    src="{{ $data->slide ? asset('uploads/slider/' . $data->slide) : '#' }}" alt="Preview"
                                     style="display: {{ $data->slide ? 'block' : 'none' }}; max-width: 100px; height: auto; margin-top: 10px;">
                             </div>
                             <button type="submit" class="btn  btn-primary">Submit</button>

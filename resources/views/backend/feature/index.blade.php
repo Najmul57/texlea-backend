@@ -20,7 +20,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-6 mx-auto">
+            <div class="col-12 col-md-10 mx-auto">
                 <div class="card">
                     <div class="card-body p-0">
                         <div class="table-responsive active-projects manage-client">
@@ -36,19 +36,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($features as $key => $item)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        
-                                        <td>{{ ucfirst($item->name)}}</td>
-                                        <td>{{ $item->count}}</td>
-                                        <td><img src="{{ asset('uploads/feature/'.$item->image) }}" alt="" style="width: 80px"></td>
-                                        <td>
-                                            <a href="{{ route('feature.edit',$item->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('feature.destroy',$item->id) }}" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach                                
+                                    @foreach ($features as $key => $item)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+
+                                            <td>{{ ucfirst($item->name) }}</td>
+                                            <td>{{ $item->count }}</td>
+                                            <td><img src="{{ asset('uploads/feature/' . $item->image) }}" alt=""
+                                                    style="width: 80px"></td>
+                                            <td>
+                                                <a href="{{ route('feature.edit', $item->id) }}"
+                                                    class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ route('feature.destroy', $item->id) }}" id="delete"
+                                                    class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
 
                             </table>

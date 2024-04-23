@@ -15,9 +15,9 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>W3CRM Customer Relationship Management</title>
+    <title>Texlea || Fashion For You!!!</title>
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('backend') }}/images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('uploads/setting/' . $settings->logo) }}">
 
     <link href="{{ asset('backend') }}/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/vendor/swiper/css/swiper-bundle.min.css" rel="stylesheet">
@@ -37,11 +37,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.9.0/sweetalert2.min.css">
 
-<style>
-    .active-projects tbody tr td:last-child {
-        text-align: center !important;
-    }
-</style>
+    <style>
+        .active-projects tbody tr td:last-child {
+            text-align: center !important;
+        }
+    </style>
 </head>
 
 <body data-typography="poppins" data-theme-version="light" data-layout="vertical" data-nav-headerbg="black"
@@ -723,11 +723,11 @@
                                     <a class="nav-link" href="javascript:void(0);" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <div class="header-info2 d-flex align-items-center">
-                                            <div class="header-media">
+                                            {{--  <div class="header-media">
                                                 <img src="{{ asset('backend') }}/images/tab/1.jpg" alt="">
-                                            </div>
+                                            </div>  --}}
                                             <div class="header-info">
-												<h6>{{ ucfirst(Auth::user()->name) }}</h6>
+                                                <h6>{{ ucfirst(Auth::user()->name) }}</h6>
                                                 <p>{{ Auth::user()->email }}</p>
                                             </div>
 
@@ -753,18 +753,25 @@
                                                 </a>
                                             </div>  --}}
                                             <div class="card-footer px-0 py-2">
-												<form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
-													@csrf
-												</form>
-												
-												<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();" class="dropdown-item ai-icon">
-													<svg class="profle-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff7979" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-														<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-														<polyline points="16 17 21 12 16 7"></polyline>
-														<line x1="21" y1="12" x2="9" y2="12"></line>
-													</svg>
-													<span class="ms-2 text-danger">Logout </span>
-												</a>
+                                                <form id="logoutForm" action="{{ route('logout') }}" method="POST"
+                                                    style="display: none;">
+                                                    @csrf
+                                                </form>
+
+                                                <a href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault(); document.getElementById('logoutForm').submit();"
+                                                    class="dropdown-item ai-icon">
+                                                    <svg class="profle-logout" xmlns="http://www.w3.org/2000/svg"
+                                                        width="18" height="18" viewBox="0 0 24 24"
+                                                        fill="none" stroke="#ff7979" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                                        <line x1="21" y1="12" x2="9"
+                                                            y2="12"></line>
+                                                    </svg>
+                                                    <span class="ms-2 text-danger">Logout </span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -782,7 +789,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-       @include('backend.layout.sidebar')
+        @include('backend.layout.sidebar')
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -794,7 +801,7 @@
 
             @yield('admin-content')
 
-            
+
         </div>
 
         <!--**********************************
@@ -958,7 +965,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Developed by <a href="https://dexignzone.com/" target="_blank">DexignZone</a> 2023
+                <p>Copyright © Developed by <a href="https://classicit.com.bd/" target="_blank">Classic IT</a> 2024
                 </p>
             </div>
         </div>

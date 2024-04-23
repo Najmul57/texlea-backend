@@ -31,10 +31,11 @@ class AboutController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/about'), $filename);
             Image::make(public_path('uploads/about') . '/' . $filename)->resize(885, 590)->save('uploads/about/' . $filename);
-            // Delete old image if exists
-            if ($data->about_image) {
+
+            if ($data->about_image && file_exists(public_path('uploads/setting') . '/' . $data->about_image)) {
                 unlink(public_path('uploads/about') . '/' . $data->about_image);
             }
+
             $data->about_image = $filename;
         }
         //mission image
@@ -43,10 +44,11 @@ class AboutController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/about'), $filename);
             Image::make(public_path('uploads/about') . '/' . $filename)->resize(885, 590)->save('uploads/about/' . $filename);
-            // Delete old image if exists
-            if ($data->mission_image) {
+
+            if ($data->mission_image && file_exists(public_path('uploads/setting') . '/' . $data->mission_image)) {
                 unlink(public_path('uploads/about') . '/' . $data->mission_image);
             }
+
             $data->mission_image = $filename;
         }
         //vission image
@@ -55,8 +57,8 @@ class AboutController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/about'), $filename);
             Image::make(public_path('uploads/about') . '/' . $filename)->resize(885, 590)->save('uploads/about/' . $filename);
-            // Delete old image if exists
-            if ($data->vission_image) {
+
+            if ($data->vission_image && file_exists(public_path('uploads/setting') . '/' . $data->vission_image)) {
                 unlink(public_path('uploads/about') . '/' . $data->vission_image);
             }
             $data->vission_image = $filename;
@@ -67,8 +69,8 @@ class AboutController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/about'), $filename);
             Image::make(public_path('uploads/about') . '/' . $filename)->resize(885, 590)->save('uploads/about/' . $filename);
-            // Delete old image if exists
-            if ($data->quality_image) {
+
+            if ($data->quality_image && file_exists(public_path('uploads/setting') . '/' . $data->quality_image)) {
                 unlink(public_path('uploads/about') . '/' . $data->quality_image);
             }
             $data->quality_image = $filename;
@@ -79,8 +81,8 @@ class AboutController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/about'), $filename);
             Image::make(public_path('uploads/about') . '/' . $filename)->resize(885, 590)->save('uploads/about/' . $filename);
-            // Delete old image if exists
-            if ($data->service_image) {
+
+            if ($data->service_image && file_exists(public_path('uploads/setting') . '/' . $data->service_image)) {
                 unlink(public_path('uploads/about') . '/' . $data->service_image);
             }
             $data->service_image = $filename;

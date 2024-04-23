@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Slider;
-use Intervention\Image\Image;
+use Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -57,7 +57,7 @@ class SliderController extends Controller
         $data->title = $request->input('title');
 
         if ($request->hasFile('slide')) {
-            if ($data->slide) {
+            if ($data->slide && file_exists(public_path('uploads/slider') . '/' . $data->slide)) {
                 unlink(public_path('uploads/slider') . '/' . $data->slide);
             }
 
@@ -82,7 +82,7 @@ class SliderController extends Controller
     {
         $data = Slider::findOrFail($id);
 
-        if ($data->slide) {
+        if ($data->slide && file_exists(public_path('uploads/slider') . '/' . $data->slide)) {
             unlink(public_path('uploads/slider') . '/' . $data->slide);
         }
 

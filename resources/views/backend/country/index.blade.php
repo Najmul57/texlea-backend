@@ -20,7 +20,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-8 mx-auto">
+            <div class="col-12 col-md-10 mx-auto">
                 <div class="card">
                     <div class="card-body p-0">
                         <div class="table-responsive active-projects manage-client">
@@ -39,7 +39,7 @@
                                     @foreach ($countries as $key => $item)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $item->name }}</td>
+                                            <td>{{ ucfirst($item->name) }}</td>
                                             <td><img src="{{ asset('uploads/country/' . $item->image) }}" alt=""
                                                     style="width: 80px"></td>
                                             <td>{!! $item->list !!}</td>

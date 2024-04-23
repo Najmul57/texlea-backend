@@ -40,15 +40,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="facebook">Facebook</label>
-                                <input type="text" name="facebook" class="form-control" value="{{ $settings->facebook }}">
+                                <input type="text" name="facebook" class="form-control"
+                                    value="{{ $settings->facebook }}">
                             </div>
                             <div class="form-group">
                                 <label for="linkedin">Linkedin</label>
-                                <input type="text" name="linkedin" class="form-control" value="{{ $settings->linkedin }}">
+                                <input type="text" name="linkedin" class="form-control"
+                                    value="{{ $settings->linkedin }}">
                             </div>
                             <div class="form-group">
                                 <label for="instagram">Instagram</label>
-                                <input type="text" name="instagram" class="form-control" value="{{ $settings->instagram }}">
+                                <input type="text" name="instagram" class="form-control"
+                                    value="{{ $settings->instagram }}">
                             </div>
                             <div class="form-group">
                                 <label for="twitter">Twitter</label>
@@ -56,20 +59,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="dhaka_office">Dhaka Office</label>
-                                <input type="text" name="dhaka_office" class="form-control" value="{{ $settings->dhaka_office }}">
+                                <input type="text" name="dhaka_office" class="form-control"
+                                    value="{{ $settings->dhaka_office }}">
                             </div>
                             <div class="form-group">
                                 <label for="italy_office">Italy Office</label>
-                                <input type="text" name="italy_office" class="form-control" value="{{ $settings->italy_office }}">
+                                <input type="text" name="italy_office" class="form-control"
+                                    value="{{ $settings->italy_office }}">
                             </div>
                             <div class="form-group">
                                 <label for="duration">Opening Hours</label>
-                                <input type="text" name="duration" class="form-control" value="{{ $settings->duration }}">
+                                <input type="text" name="duration" class="form-control"
+                                    value="{{ $settings->duration }}">
                             </div>
 
                             <div class="form-group my-3">
                                 <label for="logo">Logo</label>
-                                <input type="file" name="logo" class="form-control image">
+                                <input type="file" name="logo" class="form-control image" required>
                                 @if ($settings->logo)
                                     <img class="image-preview" src="{{ asset('uploads/setting/' . $settings->logo) }}"
                                         alt="Preview" style="max-width: 100px; height: auto; margin-top: 10px;">
@@ -80,7 +86,7 @@
                             </div>
                             <div class="form-group my-3">
                                 <label for="offcanvas_logo">Offcanvas Logo</label>
-                                <input type="file" name="offcanvas_logo" class="form-control image">
+                                <input type="file" name="offcanvas_logo" class="form-control image" required>
                                 @if ($settings->offcanvas_logo)
                                     <img class="image-preview"
                                         src="{{ asset('uploads/setting/' . $settings->offcanvas_logo) }}" alt="Preview"

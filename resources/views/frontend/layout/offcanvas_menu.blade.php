@@ -88,11 +88,11 @@
             <ul>
                 <li>
                     <span><i class="fa-solid fa-location-dot"></i></span>
-                    <span>{{ $settings->italy_office }}</span>
+                    <span>{{ ucwords($settings->italy_office) }}</span>
                 </li>
                 <li>
                     <span><i class="fa-solid fa-location-dot"></i></span>
-                    <span>{{ $settings->dhaka_office }}</span>
+                    <span>{{ ucwords($settings->dhaka_office) }}</span>
                 </li>
                 <li>
                     <span><i class="fa-regular fa-envelope"></i></span>

@@ -41,13 +41,22 @@
                             <div class="form-group my-3">
                                 <label for="subcategory_id">Select Subcategory</label>
                                 <select name="subcategory_id" id="subcategory_id" class="form-select">
-                                    <option value="" selected hidden disabled>Select Subcategory</option>
+                                    <option value="" selected disabled>Select Subcategory</option>
+                                    @foreach ($subCategories as $subCategory)
+                                        <option {{ $subCategory->id == $productgallery->subcategory_id ? 'selected' : '' }}
+                                            value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group my-3">
                                 <label for="childcategory_id">Select Subcategory</label>
                                 <select name="childcategory_id" id="childcategory_id" class="form-select">
-                                    <option value="" selected hidden disabled>Select Childcategory</option>
+                                    <option value="" selected disabled>Select Childcategory</option>
+                                    @foreach ($childCategories as $childCategory)
+                                        <option
+                                            {{ $childCategory->id == $productgallery->childcategory_id ? 'selected' : '' }}
+                                            value="{{ $childCategory->id }}">{{ $childCategory->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group my-3">
@@ -58,6 +67,7 @@
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control">
+                                <span><strong class="text-danger">Dimention : </strong>420 x 260</span>
                                 <img id="slide-preview"
                                     src="{{ $productgallery->image ? asset('uploads/product_gallery/' . $productgallery->image) : '#' }}"
                                     alt="Preview"
@@ -86,7 +96,7 @@
                         success: function(response) {
                             $('#subcategory_id').empty().append(
                                 '<option value="" selected disabled>Select Subcategory</option>'
-                                );
+                            );
                             $.each(response, function(key, value) {
                                 $('#subcategory_id').append('<option value="' + value
                                     .id + '">' + value.name + '</option>');
@@ -111,7 +121,7 @@
                         success: function(response) {
                             $('#childcategory_id').empty().append(
                                 '<option value="" selected disabled>Select Childcategory</option>'
-                                );
+                            );
                             $.each(response, function(key, value) {
                                 $('#childcategory_id').append('<option value="' + value
                                     .id + '">' + value.name + '</option>');

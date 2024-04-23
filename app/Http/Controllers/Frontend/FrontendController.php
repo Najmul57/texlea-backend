@@ -13,6 +13,7 @@ use App\Models\GlobalLocation;
 use App\Models\ProductGallery;
 use App\Models\Slider;
 use App\Models\Subcategory;
+use SebastianBergmann\Type\NullType;
 
 class FrontendController extends Controller
 {
@@ -45,22 +46,27 @@ class FrontendController extends Controller
   public function category($slug)
   {
     $category = Category::where('slug', $slug)->first();
-    $data = ProductGallery::where('category_id', $category->id)->get();
-    // dd($data);
+    $data = ProductGallery::where('category_id', $category->id)
+      ->whereNull('subcategory_id')
+      ->whereNull('childcategory_id')
+      ->get();
     return view('frontend.category.index', compact('data', 'category'));
   }
 
   public function subcategory($slug)
   {
-    $subcategory = Subcategory::where('slug',$slug)->first();
-    $data = ProductGallery::where('subcategory_id', $subcategory->id)->get();
+    $subcategory = Subcategory::where('slug', $slug)->first();
+    $data = ProductGallery::where('subcategory_id', $subcategory->id)
+      ->whereNull('childcategory_id')
+      ->get();
     return view('frontend.subcategory.index', compact('data', 'subcategory'));
   }
 
   public function childcategory($slug)
   {
-    $childcategory = ChildCategory::where('slug',$slug)->first();
+    $childcategory = ChildCategory::where('slug', $slug)->first();
     $data = ProductGallery::where('childcategory_id', $childcategory->id)->get();
+    // dd($data);
     return view('frontend.childcategory.index', compact('data', 'childcategory'));
   }
 }

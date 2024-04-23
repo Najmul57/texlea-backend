@@ -23,7 +23,8 @@
             <div class="col-12 col-md-6 col-sm-12 mx-auto">
                 <div class="card">
                     <div class="card-body p-3">
-                        <form action="{{ route('country.update',$data->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('country.update', $data->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group my-3">
                                 <label for="name">Name</label>
@@ -32,7 +33,9 @@
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control">
-                                <img id="image-preview" src="{{ $data->image ? asset('uploads/country/' . $data->image) : '#' }}" alt="Preview"
+                                <span><strong class="text-danger">Dimention : </strong>420 x 260</span>
+                                <img id="image-preview"
+                                    src="{{ $data->image ? asset('uploads/country/' . $data->image) : '#' }}" alt="Preview"
                                     style="display: {{ $data->image ? 'block' : 'none' }}; max-width: 100px; height: auto; margin-top: 10px;">
                             </div>
                             <div class="form-group my-3">
@@ -51,7 +54,7 @@
     </div>
 
 
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 

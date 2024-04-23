@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Intervention\Image\Image;
+use Image;
+
 
 class SettingController extends Controller
 {
@@ -35,22 +36,26 @@ class SettingController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/setting'), $filename);
             Image::make(public_path('uploads/setting') . '/' . $filename)->resize(175, 57)->save('uploads/setting/' . $filename);
-            // Delete old image if exists
-            if ($data->logo) {
+
+            if ($data->logo && file_exists(public_path('uploads/setting') . '/' . $data->logo)) {
                 unlink(public_path('uploads/setting') . '/' . $data->logo);
             }
+
+
             $data->logo = $filename;
         }
         //offcanvas_logo
         if ($request->hasFile('offcanvas_logo')) {
             $file = $request->file('offcanvas_logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = uniqid() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/setting'), $filename);
-            Image::make(public_path('uploads/setting') . '/' . $filename)->resize(16, 16)->save('uploads/setting/' . $filename);
-            // Delete old image if exists
-            if ($data->offcanvas_logo) {
+
+            Image::make(public_path('uploads/setting') . '/' . $filename)->resize(175, 57)->save('uploads/setting/' . $filename);
+            if ($data->offcanvas_logo && file_exists(public_path('uploads/setting') . '/' . $data->offcanvas_logo)) {
                 unlink(public_path('uploads/setting') . '/' . $data->offcanvas_logo);
             }
+
+
             $data->offcanvas_logo = $filename;
         }
 

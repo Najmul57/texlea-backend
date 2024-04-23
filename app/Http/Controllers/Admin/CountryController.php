@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use Illuminate\Http\Request;
-use Intervention\Image\Image;
+use Image;
 
 class CountryController extends Controller
 {
@@ -64,7 +64,8 @@ class CountryController extends Controller
         $data->list = $request->input('list');
 
         if ($request->hasFile('image')) {
-            if ($data->image) {
+
+            if ($data->image && file_exists(public_path('uploads/country') . '/' . $data->image)) {
                 unlink(public_path('uploads/country') . '/' . $data->image);
             }
 
@@ -89,9 +90,9 @@ class CountryController extends Controller
     {
         $data = Country::findOrFail($id);
 
-        if ($data->image) {
-            unlink(public_path('uploads/country') . '/' . $data->image);
-        }
+        if ($data->image && file_exists(public_path('uploads/country') . '/' . $data->image)) {
+                unlink(public_path('uploads/country') . '/' . $data->image);
+            }
 
         $data->delete();
 

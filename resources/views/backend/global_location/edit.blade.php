@@ -23,16 +23,21 @@
             <div class="col-12 col-md-6 col-sm-12 mx-auto">
                 <div class="card">
                     <div class="card-body p-3">
-                        <form action="{{ route('global_location.update',$data->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('global_location.update', $data->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group my-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" value="{{ $data->name }}" required>
+                                <input type="text" name="name" class="form-control" value="{{ $data->name }}"
+                                    required>
                             </div>
                             <div class="form-group my-3">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control">
-                                <img id="image-preview" src="{{ $data->image ? asset('uploads/location/' . $data->image) : '#' }}" alt="Preview"
+                                <span><strong class="text-danger">Dimention : </strong>145 x 90</span>
+                                <img id="image-preview"
+                                    src="{{ $data->image ? asset('uploads/location/' . $data->image) : '#' }}"
+                                    alt="Preview"
                                     style="display: {{ $data->image ? 'block' : 'none' }}; max-width: 100px; height: auto; margin-top: 10px;">
                             </div>
                             <div class="form-group my-3">

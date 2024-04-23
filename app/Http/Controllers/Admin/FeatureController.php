@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use Image;
 
 class FeatureController extends Controller
 {
@@ -30,7 +31,7 @@ class FeatureController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/feature'), $filename);
-            Image::make(public_path('uploads/country') . '/' . $filename)->resize(420, 260)->save('uploads/country/' . $filename);
+            Image::make(public_path('uploads/feature') . '/' . $filename)->resize(64, 64)->save('uploads/feature/' . $filename);
             $data->image = $filename;
         }
 
@@ -57,14 +58,15 @@ class FeatureController extends Controller
         $data->count = $request->input('count');
 
         if ($request->hasFile('image')) {
-            if ($data->image) {
+
+            if ($data->image && file_exists(public_path('uploads/feature') . '/' . $data->image)) {
                 unlink(public_path('uploads/feature') . '/' . $data->image);
             }
 
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/feature'), $filename);
-            Image::make(public_path('uploads/country') . '/' . $filename)->resize(420, 260)->save('uploads/country/' . $filename);
+            Image::make(public_path('uploads/feature') . '/' . $filename)->resize(64, 64)->save('uploads/feature/' . $filename);
             $data->image = $filename;
         }
 
@@ -82,7 +84,7 @@ class FeatureController extends Controller
     {
         $data = Feature::findOrFail($id);
 
-        if ($data->image) {
+        if ($data->image && file_exists(public_path('uploads/feature') . '/' . $data->image)) {
             unlink(public_path('uploads/feature') . '/' . $data->image);
         }
 

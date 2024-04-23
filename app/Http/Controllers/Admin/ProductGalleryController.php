@@ -7,7 +7,7 @@ use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Models\ChildCategory;
 use App\Models\ProductGallery;
-use Intervention\Image\Image;
+use Image;
 use App\Http\Controllers\Controller;
 
 class ProductGalleryController extends Controller
@@ -38,7 +38,7 @@ class ProductGalleryController extends Controller
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/product_gallery'), $filename);
-             Image::make(public_path('uploads/product_gallery') . '/' . $filename)->resize(420, 260)->save('uploads/product_gallery/' . $filename);
+            Image::make(public_path('uploads/product_gallery') . '/' . $filename)->resize(420, 260)->save('uploads/product_gallery/' . $filename);
             $data->image = $filename;
         }
 
@@ -55,10 +55,11 @@ class ProductGalleryController extends Controller
     public function edit($id)
     {
         $categories = Category::latest()->get();
-        $subcategory = Subcategory::latest()->get();
-        $childcategory = ChildCategory::latest()->get();
+        $subCategories = Subcategory::latest()->get();
+        $childCategories = ChildCategory::latest()->get();
         $productgallery = ProductGallery::find($id);
-        return view('backend.product_gallery.edit', compact('categories', 'subcategory', 'childcategory', 'productgallery'));
+        // dd($productgallery);    
+        return view('backend.product_gallery.edit', compact('categories', 'subCategories', 'childCategories', 'productgallery'));
     }
 
     public function update(Request $request, $id)
@@ -70,14 +71,16 @@ class ProductGalleryController extends Controller
         $data->name = $request->input('name');
 
         if ($request->hasFile('image')) {
-            if ($data->slide) {
+
+
+            if ($data->slide && file_exists(public_path('uploads/product_gallery') . '/' . $data->slide)) {
                 unlink(public_path('uploads/product_gallery') . '/' . $data->slide);
             }
 
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/product_gallery'), $filename);
-             Image::make(public_path('uploads/product_gallery') . '/' . $filename)->resize(420, 260)->save('uploads/product_gallery/' . $filename);
+            Image::make(public_path('uploads/product_gallery') . '/' . $filename)->resize(420, 260)->save('uploads/product_gallery/' . $filename);
             $data->image = $filename;
         }
 
@@ -95,8 +98,8 @@ class ProductGalleryController extends Controller
     {
         $data = ProductGallery::findOrFail($id);
 
-        if ($data->image) {
-            unlink(public_path('uploads/product_gallery') . '/' . $data->image);
+        if ($data->slide && file_exists(public_path('uploads/product_gallery') . '/' . $data->slide)) {
+            unlink(public_path('uploads/product_gallery') . '/' . $data->slide);
         }
 
         $data->delete();
@@ -113,11 +116,10 @@ class ProductGalleryController extends Controller
         $subcategories = Subcategory::where('category_id', $category_id)->get();
         return response()->json($subcategories);
     }
-    
+
     public function getChildcategories($subcategory_id)
     {
         $childcategories = Childcategory::where('subcategory_id', $subcategory_id)->get();
         return response()->json($childcategories);
     }
-    
 }
